@@ -1,0 +1,77 @@
+/* Styles for the search bar */
+  
+form {
+    display: flex;
+    }
+  
+.search-container {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+      height: 20vh;
+    }
+    
+.search-bar {
+        height: 80px;
+        width: 100px;
+        padding: 10px;
+        font-size: 20px;
+        border-radius: 20px;
+        border: none;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: width 0.5s ease-in-out, box-shadow 0.3s ease-in-out;
+    }
+    
+input[type="text"] {
+        width: 350px;
+        padding: 20px;
+        font-size: 20px;
+        border: none;
+        border-bottom: 2px solid lightblue;
+    }
+    
+button[type="submit"] {
+        width: 150px;
+        padding: 20px;
+        background-color: rgb(52, 168, 207);
+        color: rgb(128, 125, 125);
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 24px;
+    }
+    
+button:hover {
+        color: rgb(0, 0, 0);
+        transform: scale(1.05);
+        
+    }
+    
+    
+    
+    
+    /*     
+    input[type="text"] {
+        padding: 10px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px 0 0 5px;
+    } */
+    
+    /* button[type="submit"] {
+        padding: 10px 20px;
+        background-color: rgb(52, 66, 68);
+        color: white;
+        border: none;
+        border-radius: 0 5px 5px 0;
+        cursor: pointer;
+    } */
+    
+    
+    /* .search-container {
+        margin-top: 50px;
+        width: 50%;
+        text-align: center;
+    } */
+    

@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+{% block content %}
+<head>
+    {% load static %}
+    <center>
+        <h2>This is HmicSandBox PR Portal.</h2>
+        <h1>Enter the Email ID for PR Details.</h1>
+    </center>
+    <!-- <link href="{% static 'bgimg/search_page_bg.png' %}" rel="search-page-bg"> -->
+</head>
+<body>
+
+    <!-- <p style="background-image: url('img_girl.jpg');"></p> -->
+    <!-- <form class="d-flex" role="search" method="post" action="{% url 'search-hmicsandbox' %}">
+        {% csrf_token %}
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="Searched">
+        <button class="btn btn-outline-secondary" type="submit">Search</button>
+    </form> -->
+    <div class="search-container">
+        <form class="d-flex" role="search" method="post" action="{% url 'search-hmicsandbox' %}">
+            {% csrf_token %}
+          <input type="text" placeholder="Search..." id="search-input" name="Searched">
+          <button type="submit" id="search-button">Search</button>
+        </form>
+      </div>
+    <style>
+        /* transition when search button clicked */
+
+        #search-button:active {
+        background-color: #cccccc;
+        transform: scale(0.95);
+        padding: 14px 22px;
+        border-radius: 10px;
+        font-size: 18px;
+        }
+
+        #search-button {
+        /* existing styles */
+        transition: background-color 2s ease;
+        }
+
+        #search-button:active {
+        background-color: #3e8e41;
+        transform: scale(0.95);
+        }
+
+        body {
+        transition: background-color 1s ease;
+        }
+
+        .search-active {
+        background-color: #f6d365;
+        }
+
+        .search-container {
+        position: absolute;
+        top: 180%;
+        left: 60%;
+        transform: translate(-50%, -50%);
+        }
+
+        #search-button {
+        /* existing styles */
+        transition: background-color 0.3s ease;
+        }
+
+        #search-button:hover {
+        background-color: #3e8e41;
+        }
+
+        #search-button:hover {
+        background-color: #28282c;
+        color: rgb(128, 36, 36);
+        font-size: 19px;
+        }
+
+
+        /* .search-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;  To cover full page
+        } 
+        */
+
+        .search-active {
+        background: linear-gradient(to right, #8b897f 0%, #dbc6c0 100%);
+        }
+
+        .search-container {
+          width: 65%;
+          margin: 0 auto;
+          text-align: center;
+        }
+        
+        #search-input {
+          width: 60%;
+          padding: 12px 20px;
+          margin: 8px 0;
+          box-sizing: border-box;
+          border: 2px solid rgb(0, 0, 0);
+          border-radius: 4px;
+          font-size: 16px;
+        }
+        
+        #search-button {
+          width: 20%;
+          padding: 12px 20px;
+          margin: 8px 0;
+          border: none;
+          border-radius: 4px;
+          font-size: 16px;
+          background-color: #19191f;
+          color: rgb(224, 141, 152);
+        }
+
+
+        </style>
+        
+        <!-- <script>
+        // const input = document.getElementById('search-input');
+        // const button = document.getElementById('search-button');
+        const input = document.getElementById('search-input');
+        const button = document.getElementById('search-button');
+        const body = document.querySelector('body');
+
+        button.addEventListener('click', function() {
+        body.classList.add('search-active');
+        });
+        
+        input.addEventListener('focus', function() {
+          button.style.backgroundColor = '#19191f';
+        });
+        
+        input.addEventListener('blur', function() {
+          button.style.backgroundColor = '#000000';
+        });
+        
+        </script> -->
+</body>
+{% endblock %}

@@ -1,0 +1,91 @@
+{% load static %}
+<!doctype html>
+<html>
+<head>
+    <title>HmicSandBox Tab || PR Reports Portal</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'Repos/css/nav.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'Repos/css/table.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'Repos/css/search.css' %}" />
+</head>
+<body style="overflow-x: hidden;">
+    <nav>
+        <div class="nav-container">
+        <ul>
+            <li><a href="{% url 'home page' %}">Home Page</a></li>
+            <li><a href="{% url 'fcc page' %}">FCC Report</a></li>
+            <li><a href="{% url 'rcc page' %}">RCC Report</a></li>
+            <li><a href="{% url 'rtosapps page' %}">RtosApp Report</a></li>
+            
+        </ul>
+        <!-- <form>
+            <input type="text" placeholder="Search...">
+            <button type="submit">Go</button>
+        </form> -->
+        </div>
+    </nav>
+
+    <div class="search-container">
+        <form class="d-flex" role="search" method="post" action="{% url 'search-hmicsandbox' %}">
+            {% csrf_token %}
+        <input type="text" placeholder="Search With Email...." id="search-input" name="Searched">
+        <button type="submit">Search</button>
+        </form>
+    </div>
+
+    <!-- Show Tables Logic -->
+    <section class="ftco-section" style="height: 650px; overflow-y: scroll;">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-6 text-center mb-5">
+            <center><h2 class="heading-section" style="font-family: 'Poppins', sans-serif;">ALL PR Data For HmicSandBox</h2></center>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="table-wrap">
+              <table class="table table-bordered table-dark table-hover" border="0" cellspacing="0" cellpadding="1">
+                <thead class="table-dark">
+                  <tr style="height:100px">
+                    <th scope="col">S.No.</th>
+                    <th scope="col">Developer Email ID</th>
+                    <th scope="col">Repo</th>
+                    <th scope="col">Last Merge Branch</th>
+                    <th scope="col">Open PR</th>
+                    <th scope="col">Merged PR</th>
+                    <th scope="col">Declined PR</th>
+                    <th scope="col">Open PR DateTime</th>
+                    <th scope="col">Close PR DateTime</th>
+                    <th scope="col">Declined PR DateTime</th>
+                    <th scope="col">Ages of Open PR</th>
+                    <th scope="col">Ages of Close PR</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for hmicsandbox in RAll_Data_list %}
+                  <tr>
+                      <th scope="row" class="line">{{ hmicsandbox.index }}</th>
+                      <td>{{ hmicsandbox.Developer_Email_ID }} </td>
+                      <td>{{ hmicsandbox.Repo }} </td>
+                      <td>{{ hmicsandbox.Last_Merge_Branch }} </td>
+                      <td>{{ hmicsandbox.Open_PR }} </td>
+                      <td>{{ hmicsandbox.Merged_PR }} </td>
+                      <td>{{ hmicsandbox.Declined_PR }} </td>
+                      <td>{{ hmicsandbox.Open_PR_DateTime }} </td>
+                      <td>{{ hmicsandbox.Close_PR_DateTime }} </td>
+                      <td>{{ hmicsandbox.Declined_PR_DateTime }} </td>
+                      <td>{{ hmicsandbox.Ages_of_Open_PR }} </td>
+                      <td>{{ hmicsandbox.Ages_of_Close_PR }} </td>
+                  </tr>
+                  {% empty %}
+                  <h1>No Data For HmicSandBox Found !!!</h1>
+                  {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+</body>
+
+</html>
