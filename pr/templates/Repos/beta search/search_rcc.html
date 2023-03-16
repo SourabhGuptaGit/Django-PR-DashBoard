@@ -1,0 +1,97 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>HmicSandBox Search || PR Reports Portal</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'Repos/css/nav.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'Repos/css/table.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'Repos/css/search.css' %}" />
+</head>
+<body>
+    <!-- Nav Bar.. -->
+    <nav>
+        <div class="nav-container">
+          <ul>
+              <li><a href="{% url 'home page' %}">Home Page</a></li>
+              <li><a href="{% url 'rcc page' %}">All RCC</a></li>
+              <!-- <li><a href="{% url 'fcc page' %}">FCC Report</a></li>
+              <li><a href="{% url 'rcc page' %}">RCC Report</a></li>
+            <li><a href="{% url 'rtosapps page' %}">RtosApp Report</a></li> -->
+            
+          </ul>
+          <!-- <form>
+            <input type="text" placeholder="Search...">
+            <button type="submit">Go</button>
+          </form> -->
+        </div>
+      </nav>
+
+    <!-- Logic to display data.. -->
+    {% if RSearched %}
+    {% for rcc in Rrcc %}
+    <center><h2 class="heading-section">Here is the PR Report of RCC for Employee {{ RSearched }}</h2></center>
+        <div class="table-responsive" style="overflow-x:auto;">
+            <table class="table table-bordered border-primary" style="width:100%">
+                <thead class="table-dark">
+                    <tr style="height:80px">
+                        <th scope="col">S.No.</th>
+                        <th scope="col">Email_ID</th>
+                        <th scope="col">Repository</th>
+                        <th scope="col">Last Merge Branch</th>
+                        <th scope="col">Total open PR</th>
+                        <th scope="col">Total Merged PR</th>
+                        <th scope="col">Total Closed PR</th>
+                        <th scope="col">Open PR Date & Time</th>
+                        <th scope="col">Close PR Date & Time</th>
+                        <th scope="col">Declined PR Date & Time</th>
+                        <th scope="col">Ages of Open PR</th>
+                        <th scope="col">Ages of Close PR</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row" class="line"> 1.</th>
+                        <td>{{ rcc.Developer_Email_ID }} </td>
+                        <td>{{ rcc.Repo }} </td>
+                        <td>{{ rcc.Last_Merge_Branch }} </td>
+                        <td>{{ rcc.Open_PR }} </td>
+                        <td>{{ rcc.Merged_PR }} </td>
+                        <td>{{ rcc.Declined_PR }} </td>
+                        <td>{{ rcc.Open_PR_DateTime }} </td>
+                        <td>{{ rcc.Close_PR_DateTime }} </td>
+                        <td>{{ rcc.Declined_PR_DateTime }} </td>
+                        <td>{{ rcc.Ages_of_Open_PR }} </td>
+                        <td>{{ rcc.Ages_of_Close_PR }} </td>
+                    </tr>
+                    <!-- <script language="javascript">
+                        function Clickheretoprint()
+                        { 
+                        var disp_setting="toolbar=yes,location=no,directories=yes,menubar=yes,"; 
+                            disp_setting+="scrollbars=yes,width=400, height=400, left=100, top=25"; 
+                        var content_vlue = document.getElementById("print_content").innerHTML; 
+                        
+                        var docprint=window.open("","",disp_setting); 
+                        docprint.document.open(); 
+                        docprint.document.write('<html><head><title>Print</title>'); 
+                        docprint.document.write('</head><body onLoad="self.print()" style="width: 1000px; font-size:12px; font-family:arial;">');          
+                        docprint.document.write(content_vlue);          
+                        docprint.document.write('</body></html>'); 
+                        docprint.document.close(); 
+                        docprint.focus(); 
+                        }
+                        </script> -->
+                </tbody>
+        {% empty %}
+        <center><h1>No Result Found 🤖</h1></center>
+            </table>
+        </div>        
+        {% endfor %}
+    
+    {% else %}
+    <div class="container">
+        <center><h1>You Forget to Enter Search Item!!!</h1></center>
+    </div>    
+    {% endif %}
+</body>
+</html>
+        

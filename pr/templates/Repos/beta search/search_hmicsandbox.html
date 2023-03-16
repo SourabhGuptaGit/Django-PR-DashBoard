@@ -1,0 +1,90 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>HmicSandBox Search || PR Reports Portal</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'Repos/css/nav.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'Repos/css/table.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'Repos/css/search.css' %}" />
+    
+</head>
+<body>
+    <!-- Nav Bar.. -->
+    <nav>
+        <div class="nav-container">
+          <ul>
+              <li><a href="{% url 'home page' %}">Home Page</a></li>
+              <li><a href="{% url 'hmicsandbox page' %}">All HmicSandBox</a></li>
+          </ul>
+          
+        </div>
+      </nav>
+
+    <!-- Logic to display data.. -->
+    {% if RSearched %}
+    
+    <!-- <h3>Here is the PR Report of HmicSandBox for Employee {{ RSearched }} </h3> -->
+    <section class="ftco-section" style="overflow-x:auto;">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-md-6 text-center mb-5">
+              <center><h2 class="heading-section">Here is the PR Report of HmicSandBox for Employee {{ RSearched }}</h2></center>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="table-wrap">
+                <table class="table table-bordered table-dark table-hover">
+                <thead>
+                    <tr style="height:80px">
+                        <th scope="col">S.No.</th>
+                        <th scope="col">Email_ID</th>
+                        <th scope="col">Repository</th>
+                        <th scope="col">Last Merge Branch</th>
+                        <th scope="col">Total open PR</th>
+                        <th scope="col">Total Merged PR</th>
+                        <th scope="col">Total Closed PR</th>
+                        <th scope="col">Open PR Date & Time</th>
+                        <th scope="col">Close PR Date & Time</th>
+                        <th scope="col">Declined PR Date & Time</th>
+                        <th scope="col">Ages of Open PR</th>
+                        <th scope="col">Ages of Close PR</th>
+                    </tr>
+                </thead>
+                <tbody>
+                  {% for hmicsandbox in Rhmicsandbox %}
+                    <tr>
+                        <th scope="row" class="line">{{ forloop.counter }}</th>
+                        <td>{{ hmicsandbox.Developer_Email_ID }} </td>
+                        <td>{{ hmicsandbox.Repo }} </td>
+                        <td>{{ hmicsandbox.Last_Merge_Branch }} </td>
+                        <td>{{ hmicsandbox.Open_PR }} </td>
+                        <td>{{ hmicsandbox.Merged_PR }} </td>
+                        <td>{{ hmicsandbox.Declined_PR }} </td>
+                        <td>{{ hmicsandbox.Open_PR_DateTime }} </td>
+                        <td>{{ hmicsandbox.Close_PR_DateTime }} </td>
+                        <td>{{ hmicsandbox.Declined_PR_DateTime }} </td>
+                        <td>{{ hmicsandbox.Ages_of_Open_PR }} </td>
+                        <td>{{ hmicsandbox.Ages_of_Close_PR }} </td>
+                    </tr>
+                    {% empty %}
+                    <center><h1>No Result Found 🤖</h1></center>
+                    {% endfor %}
+
+                </tbody>
+    </table>
+</div>
+</div>
+</div>
+</div>
+</section>
+       
+
+    {% else %}
+    <div class="container">
+        <center><h1>You Forget to Enter Search Item!!!</h1></center>
+    </div>    
+    {% endif %}
+
+</body>
+</html>
