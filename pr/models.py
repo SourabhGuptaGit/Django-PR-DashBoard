@@ -2,6 +2,24 @@ from django.db import models
 from datetime import datetime
 
 # Create your models here.
+
+class ALL_Repo(models.Model):
+
+    index = models.IntegerField('repos_index', primary_key=True)
+    Developer_Email_ID = models.EmailField('repos_email')
+    Repo = models.CharField('repos_Repo', max_length=20)
+    Last_Merge_Branch = models.CharField('repos_merge_branch', max_length=20)
+    Open_PR = models.IntegerField('repos_open_pr')
+    Merged_PR = models.IntegerField('repos_close_pr')
+    Declined_PR = models.IntegerField('repos_decline_pr')
+    Open_PR_DateTime = models.TextField('repos open date time')
+    Close_PR_DateTime = models.TextField('repos close date time')
+    Declined_PR_DateTime = models.TextField('repos decline date time')
+    Ages_of_Open_PR = models.TextField(blank=False)
+    Ages_of_Close_PR = models.TextField(blank=False)
+
+    def __str__(self):
+        return self.Developer_Email_ID
 class HmicSandBox(models.Model):
 
     index = models.IntegerField('hmicsandbox_index', primary_key=True)

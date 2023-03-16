@@ -25,7 +25,7 @@
     </nav>
 
     <div class="search-container">
-        <form class="d-flex" role="search" method="post" action="{% url 'search-fcc' %}">
+        <form class="d-flex" role="search" method="post" action="{% url 'all-searched' %}">
             {% csrf_token %}
         <input type="text" placeholder="Search With Email...." id="search-input" name="Searched">
         <button type="submit">Search</button>
@@ -63,7 +63,7 @@
                 <tbody>
                   {% for fcc in RAll_Data_list %}
                   <tr>
-                      <th scope="row" class="line">{{ fcc.index }}</th>
+                      <th scope="row" class="line">{{ forloop.counter }}</th>
                       <td>{{ fcc.Developer_Email_ID }} </td>
                       <td>{{ fcc.Repo }} </td>
                       <td>{{ fcc.Last_Merge_Branch }} </td>

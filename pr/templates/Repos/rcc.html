@@ -12,8 +12,8 @@
         <div class="nav-container">
         <ul>
             <li><a href="{% url 'home page' %}">Home Page</a></li>
+            <li><a href="{% url 'hmicsandbox page' %}">HmicSandBox Report</a></li>
             <li><a href="{% url 'fcc page' %}">FCC Report</a></li>
-            <li><a href="{% url 'rcc page' %}">RCC Report</a></li>
             <li><a href="{% url 'rtosapps page' %}">RtosApp Report</a></li>
             
         </ul>
@@ -25,7 +25,7 @@
     </nav>
 
     <div class="search-container">
-        <form class="d-flex" role="search" method="post" action="{% url 'search-rcc' %}">
+        <form class="d-flex" role="search" method="post" action="{% url 'all-searched' %}">
             {% csrf_token %}
         <input type="text" placeholder="Search With Email...." id="search-input" name="Searched">
         <button type="submit">Search</button>
@@ -63,7 +63,7 @@
                 <tbody>
                   {% for rcc in RAll_Data_list %}
                   <tr>
-                      <th scope="row" class="line">{{ rcc.index }}</th>
+                      <th scope="row" class="line">{{ forloop.counter }}</th>
                       <td>{{ rcc.Developer_Email_ID }} </td>
                       <td>{{ rcc.Repo }} </td>
                       <td>{{ rcc.Last_Merge_Branch }} </td>

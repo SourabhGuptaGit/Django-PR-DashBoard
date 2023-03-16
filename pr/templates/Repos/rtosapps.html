@@ -25,7 +25,7 @@
     </nav>
 
     <div class="search-container">
-        <form class="d-flex" role="search" method="post" action="{% url 'search-rtosapps' %}">
+        <form class="d-flex" role="search" method="post" action="{% url 'all-searched' %}">
             {% csrf_token %}
         <input type="text" placeholder="Search With Email...." id="search-input" name="Searched">
         <button type="submit">Search</button>
@@ -63,7 +63,7 @@
                 <tbody>
                   {% for rtosapps in RAll_Data_list %}
                   <tr>
-                      <th scope="row" class="line">{{ rtosapps.index }}</th>
+                      <th scope="row" class="line">{{ forloop.counter }}</th>
                       <td>{{ rtosapps.Developer_Email_ID }} </td>
                       <td>{{ rtosapps.Repo }} </td>
                       <td>{{ rtosapps.Last_Merge_Branch }} </td>

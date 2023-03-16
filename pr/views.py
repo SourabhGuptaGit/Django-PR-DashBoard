@@ -34,12 +34,28 @@ def rtosapps(request):
         'RAll_Data_list' : All_Data_list
     })
 
+
+def searched(request):
+
+    if request.method == 'POST':
+        Searched = request.POST['Searched']
+        all_repo = ALL_Repo.objects.filter(Developer_Email_ID__contains=Searched)
+        return render(request, 'Repos/allsearch.html', {
+            'RSearched' : Searched,
+            'R_all_repo' : all_repo
+        })
+    else:
+
+        return render(request, 'Repos/allsearch.html', {})
+
+
+
 def search_hmicsandbox(request):
 
     if request.method == 'POST':
         Searched = request.POST['Searched']
         hmicsandbox = HmicSandBox.objects.filter(Developer_Email_ID__contains=Searched)
-        return render(request, 'Repos/search_hmicsandbox.html', {
+        return render(request, 'Repos/allsearch.html', {
             'RSearched' : Searched,
             'Rhmicsandbox' : hmicsandbox
         })
