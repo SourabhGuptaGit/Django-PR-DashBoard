@@ -136,21 +136,28 @@ USE_TZ = True
 
 # STATIC_URL = 'static/'
 
-# # Manually added.
+
+# # Manually added due to css not rendering issue... 
+# PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 # STATIC_URL = '/static/'
-# STATICFILES_DIRS = (
-#     os.path.join(BASE_DIR, "static/"),
-# )
+# if DEBUG:
+#    STATICFILES_DIRS = [
+#    os.path.join(BASE_DIR, 'static'),
+#    ]
+# else:
+#    STATIC_ROOT = os.path.join(BASE_DIR,'static')
 
 # Manually added due to css not rendering issue... 
-PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
+
 if DEBUG:
-   STATICFILES_DIRS = [
-   os.path.join(BASE_DIR, 'static'),
-   ]
+  STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 else:
-   STATIC_ROOT = os.path.join(PROJECT_DIR,'static')
+  STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
