@@ -3,6 +3,9 @@
 <html>
 <head>
     <title>Search Page || PR Reports Portal</title>
+      <!-- Favicons -->
+      <link href="{% static 'assets/img/fevi.png' %}" rel="icon">
+  
     <link rel="stylesheet" type="text/css" href="{% static 'Repos/css/nav.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'Repos/css/table.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'Repos/css/search.css' %}" />
@@ -24,16 +27,15 @@
 
     <!-- Logic to display data.. -->
     {% if RSearched %}
-    
-    <!-- <h3>Here is the PR Report of HmicSandBox for Employee {{ RSearched }} </h3> -->
-    <section class="ftco-section" style="overflow-x:auto;">
+    {% if R_all_repo %}
+    <section class="ftco-section" style="padding-top: 6%; height: 70%; overflow-y: scroll;">
         <div class="container">
           <div class="row justify-content-center">
             <div class="col-md-6 text-center mb-5">
-              <center><h2 class="heading-section">Here is the PR Report of HmicSandBox for Employee {{ RSearched }}</h2></center>
+              <center><h2 class="heading-section"style="font-family: 'Poppins', sans-serif;">Here is the PR Report of HmicSandBox for Employee {{ RSearched }}</h2></center>
             </div>
           </div>
-          <div class="row">
+          <div class="row" style="padding-top: 2%;">
             <div class="col-md-12">
               <div class="table-wrap">
                 <table class="table table-bordered table-dark table-hover">
@@ -80,11 +82,13 @@
 </div>
 </div>
 </section>
-       
-
+    {% else %}
+        <center><h1 style="font-family: 'Poppins', sans-serif; padding-top: 20%;">No Result Found 🤖</h1></center>
+        <center><h1 style="font-family: 'Poppins', sans-serif;">"{{ RSearched }}" doesn't Exist!!!</h1></center>
+        {% endif %}
     {% else %}
     <div class="container">
-        <center><h1>You Forget to Enter Search Item!!!</h1></center>
+        <center><h1 style="font-family: 'Poppins', sans-serif; padding-top: 20%;">You Forget to Enter Search Item!!!</h1></center>
     </div>    
     {% endif %}
 
