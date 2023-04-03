@@ -32,7 +32,7 @@
         <div class="container">
           <div class="row justify-content-center">
             <div class="col-md-6 text-center mb-5">
-              <center><h2 class="heading-section"style="font-family: 'Poppins', sans-serif;">Here is the PR Report of HmicSandBox for Employee {{ RSearched }}</h2></center>
+              <center><h2 class="heading-section"style="font-family: 'Poppins', sans-serif;">This is PR Report of All Repo's for "{{ RSearched }}"</h2></center>
             </div>
           </div>
           <div class="row" style="padding-top: 2%;">
@@ -45,6 +45,7 @@
                         <th scope="col">Email_ID</th>
                         <th scope="col">Repository</th>
                         <th scope="col">Last Merge Branch</th>
+                        <th scope="col">Current open PR</th>
                         <th scope="col">Total open PR</th>
                         <th scope="col">Total Merged PR</th>
                         <th scope="col">Total Closed PR</th>
@@ -62,6 +63,7 @@
                         <td>{{ repos.Developer_Email_ID }} </td>
                         <td>{{ repos.Repo }} </td>
                         <td>{{ repos.Last_Merge_Branch }} </td>
+                        <td>{{ repos.Current_Open_PR }} </td>
                         <td>{{ repos.Open_PR }} </td>
                         <td>{{ repos.Merged_PR }} </td>
                         <td>{{ repos.Declined_PR }} </td>

@@ -1,0 +1,16 @@
+/* General page styles */
+body {
+    /* display: flex; */
+	overflow-x: hidden;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+  }
+
+.container {
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+}

@@ -1,141 +1,123 @@
-{% extends 'base.html' %}
-{% block content %}
+{% load static %}
+<!doctype html>
+<html>
 <head>
-    {% load static %}
-    <center>
-        <h2>This is HmicSandBox PR Portal.</h2>
-        <h1>Enter the Email ID for PR Details.</h1>
-    </center>
-    <!-- <link href="{% static 'bgimg/search_page_bg.png' %}" rel="search-page-bg"> -->
+    <title>HmicSandBox Tab || PR Reports Portal</title>
+      <!-- Favicons -->
+      <link href="{% static 'assets/img/fevi.png' %}" rel="icon">
+      
+    <link rel="stylesheet" type="text/css" href="{% static 'Repos/css/nav.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'Repos/css/table.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'Repos/css/searchtest.css' %}" />
 </head>
-<body>
+<body style="overflow-x: hidden;">
+  <!-- <td style="background: url('{{ STATIC_URL }}images/sample.JPG') no-repeat;">  -->
+    <nav>
+        <div class="nav-container">
+        <ul>
+            <li><a href="{% url 'home page' %}">Home Page</a></li>
+            <li><a href="{% url 'fcc page' %}">FCC Report</a></li>
+            <li><a href="{% url 'rcc page' %}">RCC Report</a></li>
+            <li><a href="{% url 'rtosapps page' %}">RtosApp Report</a></li>
+        </ul>
+        </div>
+    </nav>
 
-    <!-- <p style="background-image: url('img_girl.jpg');"></p> -->
-    <!-- <form class="d-flex" role="search" method="post" action="{% url 'search-hmicsandbox' %}">
-        {% csrf_token %}
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="Searched">
-        <button class="btn btn-outline-secondary" type="submit">Search</button>
-    </form> -->
+    <!-- Search Button Code -->
     <div class="search-container">
-        <form class="d-flex" role="search" method="post" action="{% url 'search-hmicsandbox' %}">
+      <form id="date-form" method="post" action="{% url 'hmicsandbox page' %}" style="margin-right: 30%;">
+        {% csrf_token %}
+        <h4 style="font-family: 'Poppins', sans-serif;">From : </h4><input type="date" id="fromdate" name="fromdate"/>
+        <h4 style="font-family: 'Poppins', sans-serif;">To : </h4><input type="date" id="todate" name="todate"/>
+        <button type="submit" id="search-dates">Search</button>
+      </form>
+
+        <form id="search-form" class="d-flex" role="search" method="post" action="{% url 'all-searched' %}">
             {% csrf_token %}
-          <input type="text" placeholder="Search..." id="search-input" name="Searched">
-          <button type="submit" id="search-button">Search</button>
+        <input type="text" placeholder="Enter Email for all Data....." id="search-input" name="Searched">
+        <button type="submit" id="search-button">Search</button>
         </form>
+
+    </div>
+
+
+    <!-- Show Tables Logic -->
+    {% if RAll_Data_list %}
+    
+    <section class="ftco-section" style="height: 72.8%; overflow-y: scroll;">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div>
+            {% if from %}
+            <center><h2 class="heading-section" style="font-family: 'Poppins', sans-serif;">ALL PR Data For HmicSandBox From "{{from}}" To "{{to}}"</h2></center>
+            {% else %}
+            <center><h2 class="heading-section" style="font-family: 'Poppins', sans-serif;">ALL PR Data For HmicSandBox</h2></center>
+            {% endif %}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="table-wrap">
+              <table class="table table-bordered table-dark table-hover" border="0" cellspacing="0" cellpadding="1">
+                <thead class="table-dark">
+                  <tr style="height:100px">
+                    <th scope="col">S.No.</th>
+                    <th scope="col">Developer Email ID</th>
+                    <th scope="col">Repo</th>
+                    <th scope="col">Last Merge Branch</th>
+                    <th scope="col">Current Open PR</th>
+                    <th scope="col">Total Open PR</th>
+                    <th scope="col">Total Merged PR</th>
+                    <th scope="col">Total Declined PR</th>
+                    <th scope="col">Open PR DateTime</th>
+                    <th scope="col">Close PR DateTime</th>
+                    <th scope="col">Declined PR DateTime</th>
+                    <th scope="col">Ages of Open PR</th>
+                    <th scope="col">Ages of Close PR</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for hmicsandbox in RAll_Data_list %}
+                  <tr>
+                      <th scope="row" class="line">{{ forloop.counter }}</th>
+                      <td>{{ hmicsandbox.Developer_Email_ID }} </td>
+                      <td>{{ hmicsandbox.Repo }} </td>
+                      <td>{{ hmicsandbox.Last_Merge_Branch }} </td>
+                      <td>{{ hmicsandbox.Current_Open_PR }} </td>
+                      <td>{{ hmicsandbox.Open_PR }} </td>
+                      <td>{{ hmicsandbox.Merged_PR }} </td>
+                      <td>{{ hmicsandbox.Declined_PR }} </td>
+                      <td>{{ hmicsandbox.Open_PR_DateTime }} </td>
+                      <td>{{ hmicsandbox.Close_PR_DateTime }} </td>
+                      <td>{{ hmicsandbox.Declined_PR_DateTime }} </td>
+                      <td>{{ hmicsandbox.Ages_of_Open_PR }} </td>
+                      <td>{{ hmicsandbox.Ages_of_Close_PR }} </td>
+                  </tr>
+                  {% empty %}
+                  <h1 style="font-family: 'Poppins', sans-serif;">No Data For HmicSandBox Found !!!</h1>
+                  {% endfor %}
+          </tbody>
+        </table>
       </div>
-    <style>
-        /* transition when search button clicked */
+    </div>
+  </div>
+</div>
+</section>
+{% else %}
+<center><h1 style="font-family: 'Poppins', sans-serif; margin-top: 10%;">No Data For HmicSandBox Found !!!</h1>
+</center>
+{% endif %}
+<script src="{% static 'Repos/js/rowclick.js' %}"></script>
 
-        #search-button:active {
-        background-color: #cccccc;
-        transform: scale(0.95);
-        padding: 14px 22px;
-        border-radius: 10px;
-        font-size: 18px;
-        }
+<style>
+  .tdStyle
+  {
+  background-image:url('{{ STATIC_URL }}bgimg/search_page_bg.png');
+  background-repeat:no-repeat;
+  background-size:100%;
+  }
+  </style>
 
-        #search-button {
-        /* existing styles */
-        transition: background-color 2s ease;
-        }
-
-        #search-button:active {
-        background-color: #3e8e41;
-        transform: scale(0.95);
-        }
-
-        body {
-        transition: background-color 1s ease;
-        }
-
-        .search-active {
-        background-color: #f6d365;
-        }
-
-        .search-container {
-        position: absolute;
-        top: 180%;
-        left: 60%;
-        transform: translate(-50%, -50%);
-        }
-
-        #search-button {
-        /* existing styles */
-        transition: background-color 0.3s ease;
-        }
-
-        #search-button:hover {
-        background-color: #3e8e41;
-        }
-
-        #search-button:hover {
-        background-color: #28282c;
-        color: rgb(128, 36, 36);
-        font-size: 19px;
-        }
-
-
-        /* .search-container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;  To cover full page
-        } 
-        */
-
-        .search-active {
-        background: linear-gradient(to right, #8b897f 0%, #dbc6c0 100%);
-        }
-
-        .search-container {
-          width: 65%;
-          margin: 0 auto;
-          text-align: center;
-        }
-        
-        #search-input {
-          width: 60%;
-          padding: 12px 20px;
-          margin: 8px 0;
-          box-sizing: border-box;
-          border: 2px solid rgb(0, 0, 0);
-          border-radius: 4px;
-          font-size: 16px;
-        }
-        
-        #search-button {
-          width: 20%;
-          padding: 12px 20px;
-          margin: 8px 0;
-          border: none;
-          border-radius: 4px;
-          font-size: 16px;
-          background-color: #19191f;
-          color: rgb(224, 141, 152);
-        }
-
-
-        </style>
-        
-        <!-- <script>
-        // const input = document.getElementById('search-input');
-        // const button = document.getElementById('search-button');
-        const input = document.getElementById('search-input');
-        const button = document.getElementById('search-button');
-        const body = document.querySelector('body');
-
-        button.addEventListener('click', function() {
-        body.classList.add('search-active');
-        });
-        
-        input.addEventListener('focus', function() {
-          button.style.backgroundColor = '#19191f';
-        });
-        
-        input.addEventListener('blur', function() {
-          button.style.backgroundColor = '#000000';
-        });
-        
-        </script> -->
 </body>
-{% endblock %}
+
+</html>
