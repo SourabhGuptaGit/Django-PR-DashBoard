@@ -11,7 +11,7 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'Repos/css/tableN.css' %}" />
 </head>
 
-<body style="overflow-y: auto;">
+<body oncontextmenu="return false" style="overflow-y: auto;">
 	<nav>
         <div class="nav-container">
         <ul>
@@ -20,6 +20,7 @@
             <li><a href="{% url 'hmicsandbox page' %}">HmicSandBox Report</a></li>
             <li><a href="{% url 'fcc page' %}">FCC Report</a></li>
             <li><a href="{% url 'rtosapps page' %}">RtosApp Report</a></li>
+			<li ><a class="excel" href="{% url 'csv rcc' %}" style="font-family: 'Poppins', sans-serif;"><b>Download CSV</b></a></li>
         </ul>
         </div>
     </nav>
@@ -34,12 +35,12 @@
         </form>
 			</div>
 			<div class="date-picker">
-        <form id="date-form" method="post" action="{% url 'rcc page' %}">
+        <form id="date-form" method="post" action="{% url 'rcc date search' %}">
           {% csrf_token %}
 				<!-- <label for="start-date" style="font-family: 'Poppins', sans-serif;">Search between Dates:</label> -->
-				<label for="start-date" style="font-family: 'Poppins', sans-serif;">From :</label>
+				<label for="start-date" style="font-family: 'Poppins', sans-serif;">Search From :</label>
 				<input type="date" id="start-date" name="fromdate">
-				<label for="start-date" style="font-family: 'Poppins', sans-serif; padding-left: 15px;"> To :</label>
+				<label for="start-date" style="font-family: 'Poppins', sans-serif;"> To </label>
 				<input type="date" id="end-date" name="todate">
 				<button id="date-search-button">Search</button>
       </form>
@@ -48,7 +49,7 @@
     </div>
 
   {% if RAll_Data_list %}
-	<section class="ftco-section" style="height: 76.8%; overflow-y: scroll;">
+	<section class="ftco-section" style="height: 95%; overflow-y: scroll;">
     <div>
       {% if from %}
       <center><h2 class="heading-section" style="font-family: 'Poppins', sans-serif;">ALL PR Data For RCC From "{{from}}" To "{{to}}"</h2></center>
@@ -58,39 +59,39 @@
     </div>
 		<table class="table table-bordered table-dark table-hover" border="0" cellspacing="0" cellpadding="1">
 			<thead>
-			  <tr>
-				<th scope="col">S.No.</th>
-				<th scope="col">Developer Email ID</th>
-				<th scope="col">Repo</th>
-				<th scope="col">Last Merge Branch</th>
-				<th scope="col">Current Open PR</th>
-				<th scope="col">Total Open PR</th>
-				<th scope="col">Total Merged PR</th>
-				<th scope="col">Total Declined PR</th>
-				<th scope="col">Open PR DateTime</th>
-				<th scope="col">Close PR DateTime</th>
-				<th scope="col">Declined PR DateTime</th>
-				<th scope="col">Ages of Open PR</th>
-				<th scope="col">Ages of Close PR</th>
-			  </tr>
-			</thead>
-			<tbody>
-			  {% for repo in RAll_Data_list %}
-			  <tr>
-				  <th scope="row" class="line">{{ forloop.counter }}</th>
-				  <td>{{ repo.Developer_Email_ID }} </td>
-				  <td>{{ repo.Repo }} </td>
-				  <td>{{ repo.Last_Merge_Branch }} </td>
-				  <td>{{ repo.Current_Open_PR }} </td>
-				  <td>{{ repo.Open_PR }} </td>
-				  <td>{{ repo.Merged_PR }} </td>
-				  <td>{{ repo.Declined_PR }} </td>
-				  <td>{{ repo.Open_PR_DateTime }} </td>
-				  <td>{{ repo.Close_PR_DateTime }} </td>
-				  <td>{{ repo.Declined_PR_DateTime }} </td>
-				  <td>{{ repo.Ages_of_Open_PR }} </td>
-				  <td>{{ repo.Ages_of_Close_PR }} </td>
-			  </tr>
+				<tr>
+					<th scope="col" class="table_header">S.No.</th>
+					<th scope="col" class="table_header">Developer Email ID</th>
+					<th scope="col" class="table_header">Repo</th>
+					<th scope="col" class="table_header">Last Merge Branch</th>
+					<th scope="col" class="table_header">Current Open PR</th>
+					<th scope="col" class="table_header">Total Open PR</th>
+					<th scope="col" class="table_header">Total Merged PR</th>
+					<th scope="col" class="table_header">Total Declined PR</th>
+					<th scope="col" class="table_header">Open PR DateTime</th>
+					<th scope="col" class="table_header">Close PR DateTime</th>
+					<th scope="col" class="table_header">Declined PR DateTime</th>
+					<th scope="col" class="table_header">Ages of Open PR</th>
+					<th scope="col" class="table_header">Ages of Close PR</th>
+				  </tr>
+				</thead>
+				<tbody>
+				  {% for repo in RAll_Data_list %}
+				  <tr id="data_rows">
+					<th scope="row" class="index_col">{{ forloop.counter }}</th>
+					<td style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">{{ repo.Developer_Email_ID }} </td>
+					<td style="font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">{{ repo.Repo }} </td>
+					<td style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">{{ repo.Last_Merge_Branch }} </td>
+					<td>{{ repo.Current_Open_PR }} </td>
+					<td>{{ repo.Open_PR }} </td>
+					<td>{{ repo.Merged_PR }} </td>
+					<td>{{ repo.Declined_PR }} </td>
+					<td><nobr>{{ repo.Open_PR_DateTime }}</nobr></td>
+					<td><nobr>{{ repo.Close_PR_DateTime }}</nobr></td>
+					<td><nobr>{{ repo.Declined_PR_DateTime }}</nobr></td>
+					<td>{{ repo.Ages_of_Open_PR }} </td>
+					<td>{{ repo.Ages_of_Close_PR }} </td>
+				</tr>
 			  {% empty %}
 			  <h1 style="font-family: 'Poppins', sans-serif;">No Data For RCC Found !!!</h1>
 			  {% endfor %}
@@ -101,5 +102,6 @@
   {% endif %}
 
 <script src="{% static 'Repos/js/rowclick.js' %}"></script>
+<script src="{% static 'Repos/js/inspectionOFF.js' %}"></script>
 </body>
 </html>

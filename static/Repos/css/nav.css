@@ -1,43 +1,75 @@
-body {
+nav {
     /* display: flex; */
-    flex-direction: column;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    padding: 0;
-  }
-  
-  nav {
-    display: flex;
     background-color: black;
-    padding: 30px;
+    padding: 2px;
     width: 100%;
+    overflow: hidden;
+
   }
   
-  .nav-container {
+  /* .nav-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-  }
+  } */
   
   ul {
     list-style: none;
-    display: flex;
     margin: 0;
     padding: 0;
   }
   
   li {
-    margin: 0 20px;
+    margin: 0 32px;
   }
   
+  a.excel {
+    text-decoration: wavy;
+    color: rgb(2, 122, 2);
+    transition: all 0.3s ease;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
   a {
     text-decoration: none;
-    color: white;
-    transition: all 0.6s ease;
+    color: rgb(250, 236, 236);
+    transition: all 0.3s ease;
   }
   
   a:hover {
-    color: rgb(55, 107, 252);
+    color: rgb(5, 4, 4);
     transform: scale(1.1);
+  }
+
+
+  /* ------------------------------------------------------------------------------------------------------------------------- */
+
+
+  nav {
+    background-color: #0a0a0a;
+    overflow: hidden;
+  }
+  
+  nav li {
+    float: left;
+  }
+  
+  nav li.right {
+    float: right;
+  }
+  
+  nav li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 26px;
+    text-decoration: none;
+  }
+  
+  nav li a:hover {
+    background-color: #2c76ff;
+  }
+  nav li a.excel:hover {
+    background-color: #109205;
   }

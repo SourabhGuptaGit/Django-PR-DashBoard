@@ -10,8 +10,14 @@ urlpatterns = [
     path('rcc/', views.rcc, name='rcc page'),
     path('rtosapps/', views.rtosapps, name='rtosapps page'),
     path('searched/', views.searched, name='all-searched'),
-    # path('search hmicsandbox', views.search_hmicsandbox, name='search-hmicsandbox'),
-    # path('search fcc', views.search_FCC, name='search-fcc'),
-    # path('search rcc', views.search_RCC, name='search-rcc'),
-    # path('search rtosapps', views.search_RtosApps, name='search-rtosapps'),
+    path('hmicsandbox/date-search/', views.searched_btw_dates, name='hmicsandbox date search'),
+    path('fcc/date-search/', views.searched_btw_dates, name='fcc date search'),
+    path('rcc/date-search/', views.searched_btw_dates, name='rcc date search'),
+    path('rtosapps/date-search/', views.searched_btw_dates, name='rtosapps date search'),
+    path('repo-dates csv request/', views.csv_search_btw_dates, name='csv request'),
+    path('hmicsandbox/csv request/', views.csv_repos, name='csv hmicsandbox'),
+    path('fcc/csv request/', views.csv_repos, name='csv fcc'),
+    path('rcc/csv request/', views.csv_repos, name='csv rcc'),
+    path('rtosapps/csv request/', views.csv_repos, name='csv rtosapps'),
+
 ]

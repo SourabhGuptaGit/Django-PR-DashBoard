@@ -1,4 +1,4 @@
-const rows = document.querySelectorAll('table tr');
+const rows = document.querySelectorAll('#data_rows');
 
 // Loop through each row and add a click event listener
 rows.forEach((row) => {

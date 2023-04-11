@@ -1,0 +1,47 @@
+#excel_button {
+    --c:  #127e3b; /* the color*/
+    
+    box-shadow: 0 0 0 .1em inset var(--c); 
+    --_g: linear-gradient(var(--c) 0 0) no-repeat;
+    background: 
+      var(--_g) calc(var(--_p,0%) - 100%) 0%,
+      var(--_g) calc(200% - var(--_p,0%)) 0%,
+      var(--_g) calc(var(--_p,0%) - 100%) 100%,
+      var(--_g) calc(200% - var(--_p,0%)) 100%;
+    background-size: 50.5% calc(var(--_p,0%)/2 + .5%);
+    outline-offset: .1em;
+    transition: background-size .4s, background-position 0s .4s;
+  }
+  #excel_button:hover {
+    --_p: 100%;
+    transition: background-position .4s, background-size 0s;
+  }
+  #excel_button:active {
+    box-shadow: 0 0 9e9q inset #0009; 
+    background-color: var(--c);
+    color: #fff;
+  }
+  
+  .search-container {
+    /* display: flex; */
+    /* flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between; */
+    margin: 20px;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+  }
+  
+  #excel_button {
+    font-family: system-ui, sans-serif;
+    font-size: 1.34rem;
+    cursor: pointer;
+    padding: .3em .4em;
+    font-weight: bold;  
+    border: none;
+    /* float: right; */
+    margin-right: 0;
+    margin-left: auto;
+  }
+  

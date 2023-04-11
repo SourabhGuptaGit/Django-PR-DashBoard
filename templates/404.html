@@ -1,4 +1,17 @@
-<div class="main">
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href="{% static 'assets/img/fevi.png' %}" rel="icon">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Error 404 || PR Portal</title>
+</head>
+<body oncontextmenu="return false">
+  <div class="main">
     <div>
       <!-- <h1> Are you lokking for Build request Form?? </h1>
       <h1> Click Below to visit the Page. </h1> -->
@@ -263,11 +276,11 @@
         </g>
         <path class="st9" d="M320.3 257.8h549.9"/>
         <g id="Text">
-          <text transform="translate(377.037 230.025)" class="st8 st10" font-size="21">
-            404
+          <text transform="translate(598.037 145.025)" class="st8 st10" font-size="30">
+            Error 404
           </text>
-          <text transform="translate(659.5 213.994)" class="st8 st10" font-size="24.025">
-          Page not found.
+          <text transform="translate(545.5 217.994)" class="st8 st10" font-size="24.025">
+          This page does not Exist !
           </text>
         </g>
         <g id="ladders">
@@ -383,10 +396,10 @@
       to { transform: translateX(100px); }
   }
   
-  /* @keyframes cloudFloat {
+  @keyframes cloudFloat {
     0% { transform: translateX(0) translateY(3px); }
     100% { transform: translateX(1000px) translateY(0); }
-  } */
+  }
   
   @keyframes cloud001 {
     0% { transform: translateX(-1000px) translateY(3px); }
@@ -421,3 +434,6 @@
     100% { transform: translateX(-2px); }
   }
   </style>
+<script src="{% static 'Repos/js/inspectionOFF.js' %}"></script>
+</body>
+</html>
